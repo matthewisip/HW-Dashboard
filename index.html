@@ -22,21 +22,39 @@
             padding: 10px;
             text-align: left;
         }
-        .controls {
+        .controls, .form-container {
             margin-bottom: 20px;
+        }
+        .form-container {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .form-container input {
+            margin: 5px 0;
+            width: calc(100% - 22px);
         }
     </style>
 </head>
 <body>
     <h1>Homework Dashboard</h1>
     <div class="controls">
-        <button onclick="addAssignment()">Add Assignment</button>
+        <button onclick="showForm()">Add Assignment</button>
         <label for="sort">Sort by:</label>
         <select id="sort" onchange="sortAssignments()">
             <option value="class">Class</option>
             <option value="dueDate">Due Date</option>
             <option value="name">A-Z</option>
         </select>
+    </div>
+    <div class="form-container" id="formContainer">
+        <h3 id="formTitle">Add Assignment</h3>
+        <input type="text" id="name" placeholder="Assignment Name">
+        <input type="text" id="description" placeholder="Description (optional)">
+        <input type="text" id="className" placeholder="Class Name">
+        <input type="date" id="dueDate">
+        <button onclick="saveAssignment()">Save</button>
+        <button onclick="cancelForm()">Cancel</button>
     </div>
     <table id="assignmentsTable">
         <thead>
@@ -46,6 +64,7 @@
                 <th>Class</th>
                 <th>Date Created</th>
                 <th>Due Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
